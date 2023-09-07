@@ -6,14 +6,19 @@ import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import { Routes, Route } from 'react-router-dom'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser, setRole } from '../../utilities/users-service';
-import { set } from 'mongoose';
+import { set, setDriver } from 'mongoose';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
+  const [error, setError] = useState(null)
 
   async function handleSetRole(evt) {
-    const user = await setRole(evt.target.value)
-    console.log(user)
+    try{
+      await setRole(evt.target.value)
+      setError(null)
+    } catch {
+      setError("Something went wrong.  Please try again later.")
+    }
   }
 
   return (
@@ -32,6 +37,12 @@ export default function App() {
             <>
               <button onClick={handleSetRole} value="O" >Organizer</button>
               <button onClick={handleSetRole} value="P" >Player</button>
+              {
+                error ? 
+                  <p>{error}</p>
+                :
+                  <></>
+              }
             </>
         :
           <AuthPage setUser={setUser} />
