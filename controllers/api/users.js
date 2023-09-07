@@ -5,7 +5,19 @@ const bcrypt = require('bcrypt')
 module.exports = {
     create,
     login,
-    checkToken
+    checkToken,
+    setRole
+}
+
+async function setRole(req,res) {
+    try {
+        const user = await User.findById(req.user._id)
+        user.role = req.body.role
+        await user.save()
+        res.json(user)
+    } catch (err) {
+        res.status(400).json(err)
+    }
 }
 
 async function checkToken(req,res) {

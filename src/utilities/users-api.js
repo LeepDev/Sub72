@@ -14,3 +14,7 @@ export async function login(credentials) {
 export async function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`)
 }
+
+export async function setRole(role) {
+  return sendRequest(`${BASE_URL}/set-role`, 'POST', role)
+}

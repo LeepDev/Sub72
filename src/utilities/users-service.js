@@ -49,3 +49,7 @@ export function getUser() {
 export function logOut() {
   localStorage.removeItem('token');
 }
+
+export function setRole(role) {
+  return usersAPI.setRole({ role: role })
+}

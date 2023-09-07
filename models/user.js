@@ -19,7 +19,8 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
-    }
+    },
+    role: String
 }, {
     timestamps: true,
     toJSON: {
