@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import './App.css';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import AuthPage from '../AuthPage/AuthPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import NavBar from '../../components/NavBar/NavBar';
 import { getUser, setRole } from '../../utilities/users-service';
+import NavBar from '../../components/NavBar/NavBar';
+import AuthPage from '../AuthPage/AuthPage';
+import TournamentIndex from '../TournamentIndex/TournamentIndex';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -22,20 +21,21 @@ export default function App() {
   }
 
   return (
-    <main className="App" style={{ height: "100%" }} >
+    <main className="App">
       { user ? 
           user.role ?
             <>
               <NavBar user={user} setUser={setUser} />
               <Routes>
                 {/* Route components in here */}
-                <Route path="/orders/new" element={<NewOrderPage />} />
-                <Route path="/orders" element={<OrderHistoryPage />} />
-                <Route path="*" element={ <></> }/>
+                {/* TODO: add new tournament for organizers */}
+                {/* <Route path="/orders/new" element={<NewOrderPage />} /> */}
+                <Route path="/tournaments" element={<TournamentIndex />} />
+                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>Home</h1></div> }/>
               </Routes>
             </>
           :
-            <div className="flex-ctr-ctr flex-col"  style={{ height: "100%" }}>
+            <div className="flex-ctr-ctr flex-col">
               <h1>Welcome to Sub 72</h1>
 
               <h2>Roles:</h2>
