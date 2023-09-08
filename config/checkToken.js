@@ -13,7 +13,6 @@ module.exports = function(req, res, next) {
       req.user = err ? null : decoded.user;  
       // If your app cares... (optional)
       req.exp = err ? null : new Date(decoded.exp * 1000);  
-      // req.role = err ? null : decoded.role;
       return next();
     });
   } else {

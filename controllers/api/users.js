@@ -14,7 +14,7 @@ async function setRole(req,res) {
         const user = await User.findById(req.user._id)
         user.role = req.body.role
         await user.save()
-        res.json(user)
+        res.json(createJWT(user))
     } catch (err) {
         res.status(400).json(err)
     }

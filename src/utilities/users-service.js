@@ -50,6 +50,8 @@ export function logOut() {
   localStorage.removeItem('token');
 }
 
-export function setRole(role) {
-  return usersAPI.setRole({ role: role })
+export async function setRole(role) {
+  const token = await usersAPI.setRole({ role: role })
+  localStorage.setItem('token', token)
+  return getUser();
 }

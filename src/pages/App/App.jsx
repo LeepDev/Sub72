@@ -6,7 +6,6 @@ import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import { Routes, Route } from 'react-router-dom'
 import NavBar from '../../components/NavBar/NavBar';
 import { getUser, setRole } from '../../utilities/users-service';
-import { set, setDriver } from 'mongoose';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -15,6 +14,7 @@ export default function App() {
   async function handleSetRole(evt) {
     try{
       await setRole(evt.target.value)
+      setUser(getUser())
       setError(null)
     } catch {
       setError("Something went wrong.  Please try again later.")
@@ -22,7 +22,7 @@ export default function App() {
   }
 
   return (
-    <main className="App">
+    <main className="App" style={{ height: "100%" }} >
       { user ? 
           user.role ?
             <>
@@ -31,19 +31,24 @@ export default function App() {
                 {/* Route components in here */}
                 <Route path="/orders/new" element={<NewOrderPage />} />
                 <Route path="/orders" element={<OrderHistoryPage />} />
+                <Route path="*" element={ <></> }/>
               </Routes>
             </>
           :
-            <>
+            <div className="flex-ctr-ctr flex-col"  style={{ height: "100%" }}>
+              <h1>Welcome to Sub 72</h1>
+
+              <h2>Roles:</h2>
               <button onClick={handleSetRole} value="O" >Organizer</button>
               <button onClick={handleSetRole} value="P" >Player</button>
+              <p style={{ fontWeight: "bold" }}>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
               {
                 error ? 
                   <p>{error}</p>
                 :
                   <></>
               }
-            </>
+            </div>
         :
           <AuthPage setUser={setUser} />
       }
