@@ -30,8 +30,9 @@ export default function App() {
                 {/* Route components in here */}
                 {/* TODO: add new tournament for organizers */}
                 {/* <Route path="/orders/new" element={<NewOrderPage />} /> */}
+                <Route path="/" element={ <><h1>Home</h1></> } />
                 <Route path="/tournaments" element={<TournamentIndex />} />
-                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>Home</h1></div> }/>
+                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>
             </>
           :

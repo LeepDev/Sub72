@@ -3,7 +3,8 @@ import TournamentCard from '../../components/TournamentCard/TournamentCard'
 
 const tournamentDB = [
     {"name": "GC Guardians", "courses": [{ "name": "Mount Prospect GC"}, { "name": "Buffalo Grove GC"}, { "name": "Buffalo Grove GC"}, { "name": "Buffalo Grove GC"}]},
-    {"name": "Mount Prospectors", "courses": [{ "name": "Mount Prospect GC"}, { "name": "Buffalo Grove GC"}]}
+    {"name": "Mount Prospectors", "courses": [{ "name": "Mount Prospect GC"}]},
+    {"name": "Mount Prospectors", "courses": [{ "name": "Mount Prospect GC"}, { "name": "Buffalo Grove GC"}, { "name": "Buffalo Grove GC"}]},
 ]
 
 export default function TournamentIndex() {
@@ -12,11 +13,14 @@ export default function TournamentIndex() {
     return (
         <div className="flex-ctr-ctr flex-col">
             <h1>Tournaments</h1>
-            { tournaments.length > 0 && 
-                tournaments.map((t,idx) => 
-                    <TournamentCard key={idx} tournament={t} /> 
-                )
-            }
+            <div>
+                { 
+                    tournaments.length > 0 && 
+                    tournaments.map((t,idx) => 
+                        <TournamentCard key={idx} tournament={t} /> 
+                    )
+                }
+            </div>
         </div>
     );
 }
