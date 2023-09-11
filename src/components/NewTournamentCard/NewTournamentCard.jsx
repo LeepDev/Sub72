@@ -3,31 +3,31 @@ import { useState } from "react";
 import * as tService from '../../utilities/tournament-service';
 
 export default function NewTournamentCard() {
-    const [text, setText] = useState('')
+    const [name, setName] = useState('')
     const [error, setError] = useState('');
     
     function handleChange(evt) {
-        setText(evt.target.value);
+        setName(evt.target.value);
         setError('');
     }
     
     async function handleSubmit(evt) {
       evt.preventDefault();
       try {
-        // await notesService.create(text);
-      } catch {
-        setError('Log In Failed - Try Again');
+        await tService.create(name);
+      } catch (err) {
+        console.log(err);
       }
     }
 
     return (
         <div className='newTournamentCard'>
-            <h1>New Tournament Form</h1>
+            <p><span>New Tournament Form</span></p>
             <div className="form-container flex-ctr-ctr" autoComplete="off" onSubmit={handleSubmit} >
                 <form method="POST">
-                    <label>Note Text:</label>
-                    <textarea type="text" name="text" value={text} onChange={handleChange} required  />
-                    <button type="submit" >Save Note</button>
+                    <label>Tournament Name:</label>
+                    <input type="text" name="name" value={name} onChange={handleChange} required  />
+                    <button type="submit" >Save</button>
                 </form>
             </div>
             

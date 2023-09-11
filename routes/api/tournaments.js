@@ -8,5 +8,6 @@ const tCtrl = require('../../controllers/api/tournaments')
 
 // POST /api/tournaments
 router.post('/', tCtrl.create)
+router.get('/', tCtrl.index)
 
 module.exports = router

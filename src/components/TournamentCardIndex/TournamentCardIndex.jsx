@@ -2,7 +2,7 @@ import TournamentCard from '../TournamentCard/TournamentCard'
 
 export default function TournamentCardIndex({tournaments}) {
     return (
-        <div className="flex-ctr-ctr flex-col">
+        <div className="flex-ctr-ctr flex-col tournamentCardIndex">
             <div>
                 { 
                     tournaments.length > 0 && 

@@ -35,6 +35,10 @@ code {
   height: 100%;
 }
 
+.margin-2vh{
+  margin: 2vh;
+}
+
 .align-ctr {
   text-align: center;
 }
