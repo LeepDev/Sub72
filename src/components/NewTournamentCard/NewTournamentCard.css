@@ -1,4 +1,4 @@
-.tournamentCard {
+.newTournamentCard {
     text-align: center;
     height: 100%;
     max-width: 99%;
@@ -9,6 +9,6 @@
     padding: 2vh;
   }
 
-.tournamentCard span {
+.newTournamentCard span {
     font-weight: bold;
 }

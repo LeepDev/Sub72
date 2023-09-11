@@ -17,10 +17,10 @@ export default function NavBar ({user, setUser}) {
             &nbsp; | &nbsp;
             <span>Welcome, {user.name}!</span>
             &nbsp; | &nbsp;
-            {   user.role == "O" &&
+            {   user.role === "O" &&
                 <>
-                    <Link to="/tournaments/new">New Tournaments</Link>
-                    &nbsp; | &nbsp;
+                    {/* <Link to="/tournaments/new">New Tournaments</Link>
+                    &nbsp; | &nbsp; */}
                 </>
             }
             <Link to="/tournaments">Tournaments</Link>

@@ -27,11 +27,14 @@ export default function App() {
             <>
               <NavBar user={user} setUser={setUser} />
               <Routes>
-                {/* Route components in here */}
-                {/* TODO: add new tournament for organizers */}
-                {/* <Route path="/orders/new" element={<NewOrderPage />} /> */}
+                {   user.role === "O" &&
+                    <>
+                        {/* <Route path="/tournaments/new" element={<><h1>New Tourney</h1></>} /> */}
+                        {/* <Route path="/tournaments/new" element={ <NewTournament /> } /> */}
+                    </>
+                }
                 <Route path="/" element={ <><h1>Home</h1></> } />
-                <Route path="/tournaments" element={<TournamentIndex />} />
+                <Route path="/tournaments" element={<TournamentIndex user={user} />} />
                 <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>
             </>
