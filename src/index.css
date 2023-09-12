@@ -35,8 +35,16 @@ code {
   height: 100%;
 }
 
+.flex-ctr-start {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+}
+
 .margin-2vh{
-  margin: 2vh;
+  margin: 0 0 0 2vh;
 }
 
 .align-ctr {

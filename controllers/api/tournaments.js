@@ -5,11 +5,21 @@ const bcrypt = require('bcrypt')
 module.exports = {
     create,
     index,
+    deleteOne,
 }
 
 async function create(req, res) {
     try {
         const tournament = await Tournament.create(req.body)
+        res.json(tournament)
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
+async function deleteOne(req, res) {
+    try {
+        const tournament = await Tournament.deleteOne({_id: req.params.id})
         res.json(tournament)
     } catch (err) {
         res.status(400).json(err)

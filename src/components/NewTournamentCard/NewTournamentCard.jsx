@@ -2,7 +2,7 @@ import './NewTournamentCard.css';
 import { useState } from "react";
 import * as tService from '../../utilities/tournament-service';
 
-export default function NewTournamentCard() {
+export default function NewTournamentCard({ fetchTournaments }) {
     const [name, setName] = useState('')
     const [error, setError] = useState('');
     
@@ -15,6 +15,8 @@ export default function NewTournamentCard() {
       evt.preventDefault();
       try {
         await tService.create(name);
+        setName('')
+        fetchTournaments()
       } catch (err) {
         console.log(err);
       }
@@ -23,10 +25,10 @@ export default function NewTournamentCard() {
     return (
         <div className='newTournamentCard'>
             <p><span>New Tournament Form</span></p>
-            <div className="form-container flex-ctr-ctr" autoComplete="off" onSubmit={handleSubmit} >
-                <form method="POST">
+            <div className="form-container flex-ctr-ctr">
+                <form method="POST" onSubmit={handleSubmit} autoComplete="off">
                     <label>Tournament Name:</label>
-                    <input type="text" name="name" value={name} onChange={handleChange} required  />
+                    <input type="text" name="name" value={name} onChange={handleChange} required />
                     <button type="submit" >Save</button>
                 </form>
             </div>

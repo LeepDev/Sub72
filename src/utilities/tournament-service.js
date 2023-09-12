@@ -7,6 +7,11 @@ export async function create(data) {
   return tournament
 }
 
+export async function deleteOne(id) {
+  const tournament = await tAPI.deleteOne(id);
+  return tournament
+}
+
 export function index() {
   return tAPI.index()
 }
