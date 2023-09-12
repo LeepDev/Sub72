@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "https://sub-72-b28ef7bf43a9.herokuapp.com:80"
 }
