@@ -4,7 +4,7 @@ export default function TournamentCardIndex({tournaments, user, handleDelete}) {
 
 
     return (
-        <div className="flex-ctr-ctr flex-col tournamentCardIndex">
+        <div className="flex-ctr-ctr flex-col">
             <div>
                 { 
                     tournaments.length > 0 && 

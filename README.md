@@ -2,7 +2,7 @@
 Welcome to Sub72!  This app was created to support amatuer golf events as well as including a segment that helps tally up the different mini-games an organizer will decide on (closest to the pin, longest drive, lowest gross/net score, lowest team score).  Hope you enjoy it!
 
 ## Getting Started
-* [Google Place holder for Live URL](https://www.google.com)
+* [Live Demo](https://sub-72-b28ef7bf43a9.herokuapp.com/)
 * [Miro Board](https://miro.com/app/board/uXjVMnxX1Ec=/?share_link_id=216502994743)
 
 ## Wireframes

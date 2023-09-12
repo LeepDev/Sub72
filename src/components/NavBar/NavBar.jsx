@@ -25,6 +25,8 @@ export default function NavBar ({user, setUser}) {
             }
             <Link to="/tournaments">Tournaments</Link>
             &nbsp; | &nbsp;
+            <Link to="/courses">Courses</Link>
+            &nbsp; | &nbsp;
             <Link to="" onClick={handleLogOut}>Log Out</Link>
         </nav>
     )

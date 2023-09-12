@@ -1,0 +1,14 @@
+.courseCard {
+    text-align: center;
+    height: 100%;
+    max-width: 99%;
+    min-width: 50%;
+    background-color: white;
+    border-radius: 5vh;
+    margin: 2vh;
+    padding: 2vh;
+  }
+
+.courseCard span {
+    font-weight: bold;
+}

@@ -1,4 +1,4 @@
-const Tournament = require('../../models/tournament')
+const Course = require('../../models/course')
 
 module.exports = {
     create,
@@ -8,8 +8,8 @@ module.exports = {
 
 async function create(req, res) {
     try {
-        const tournament = await Tournament.create(req.body)
-        res.json(tournament)
+        const course = await Course.create(req.body)
+        res.json(course)
     } catch (err) {
         res.status(400).json(err)
     }
@@ -17,8 +17,8 @@ async function create(req, res) {
 
 async function deleteOne(req, res) {
     try {
-        const tournament = await Tournament.deleteOne({_id: req.params.id})
-        res.json(tournament)
+        const course = await Course.deleteOne({_id: req.params.id})
+        res.json(course)
     } catch (err) {
         res.status(400).json(err)
     }
@@ -26,8 +26,8 @@ async function deleteOne(req, res) {
 
 async function index(req, res) {
     try {
-        const tournaments = await Tournament.find({})
-        res.json(tournaments)
+        const courses = await Course.find({})
+        res.json(courses)
     } catch (err) {
         res.status(400).json(err)
     }
