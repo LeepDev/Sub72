@@ -1,6 +1,6 @@
 import TournamentCard from '../TournamentCard/TournamentCard'
 
-export default function TournamentCardIndex({tournaments, user, handleDelete}) {
+export default function TournamentCardIndex({tournaments, user, handleDelete, fetchTournaments}) {
 
 
     return (
@@ -9,7 +9,7 @@ export default function TournamentCardIndex({tournaments, user, handleDelete}) {
                 { 
                     tournaments.length > 0 && 
                     tournaments.map((t,idx) => 
-                        <TournamentCard key={idx} tournament={t} user={user} handleDelete={handleDelete} /> 
+                        <TournamentCard fetchTournaments={fetchTournaments} key={idx} tournament={t} user={user} handleDelete={handleDelete} /> 
                     )
                 }
             </div>

@@ -28,7 +28,7 @@ export default function TournamentIndex({user}) {
         <div className="flex-ctr-ctr flex-col">
             <h1>Tournaments</h1>
             <div className="flex-ctr-ctr">
-                <TournamentCardIndex tournaments={tournaments} user={user} handleDelete={handleDelete} />
+                <TournamentCardIndex fetchTournaments={fetchTournaments} tournaments={tournaments} user={user} handleDelete={handleDelete} />
                 {
                     user.role === 'O' &&
                     <div className="flex-ctr-start margin-2vh">
