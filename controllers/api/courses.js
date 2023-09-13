@@ -4,6 +4,7 @@ module.exports = {
     create,
     index,
     deleteOne,
+    findOne
 }
 
 async function create(req, res) {
@@ -28,6 +29,15 @@ async function index(req, res) {
     try {
         const courses = await Course.find({})
         res.json(courses)
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
+async function findOne(req, res) {
+    try {
+        const course = await Course.findById(req.params.id)
+        res.json(course)
     } catch (err) {
         res.status(400).json(err)
     }

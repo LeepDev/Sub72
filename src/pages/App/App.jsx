@@ -7,6 +7,7 @@ import AuthPage from '../AuthPage/AuthPage';
 import TournamentIndex from '../TournamentIndex/TournamentIndex';
 import TournamentEdit from '../TournamentEdit/TournamentEdit';
 import CourseIndex from '../CourseIndex/CourseIndex';
+import CourseDetails from '../CourseDetails/CourseDetails';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -39,6 +40,7 @@ export default function App() {
                 <Route path="/tournaments" element={<TournamentIndex user={user} />} />
                 <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
                 <Route path="/courses" element={<CourseIndex user={user} />} />
+                <Route path="/courses/:id" element={<CourseDetails />} />
                 <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>
             </>

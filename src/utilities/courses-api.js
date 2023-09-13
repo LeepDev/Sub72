@@ -13,3 +13,7 @@ export async function deleteOne(id) {
 export async function index() {
   return sendRequest(`${BASE_URL}`)
 }
+
+export async function findOne(id) {
+  return sendRequest(`${BASE_URL}/${id}`)
+}

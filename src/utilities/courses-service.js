@@ -15,3 +15,7 @@ export async function deleteOne(id) {
 export function index() {
   return cAPI.index()
 }
+
+export function findOne(id) {
+  return cAPI.findOne(id);
+}

@@ -9,5 +9,6 @@ const cCtrl = require('../../controllers/api/courses')
 router.post('/', cCtrl.create)
 router.post('/delete/:id', cCtrl.deleteOne)
 router.get('/', cCtrl.index)
+router.get('/:id', cCtrl.findOne)
 
 module.exports = router
