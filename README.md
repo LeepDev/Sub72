@@ -65,9 +65,6 @@ AAP (As A Player):
         * total yardages
             * red
             * white
-            * blue
-* Beautify with CSS
-    * Materialize
 
 ## Stretch Goals
 * Scrape [www.mscorecard.com](https://www.mscorecard.com/mscorecard/courses.php) using cheerio.js.org
@@ -90,3 +87,6 @@ AAP (As A Player):
     * I want to be able to join groups
     * I want to be able to put in scores
 * Add validation to all models
+            * blue
+* Beautify with CSS
+    * Materialize
