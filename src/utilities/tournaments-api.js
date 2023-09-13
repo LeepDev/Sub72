@@ -6,6 +6,10 @@ export async function create(data) {
   return sendRequest(BASE_URL, 'POST', data)
 }
 
+export async function update(id, data) {
+  return sendRequest(`${BASE_URL}/${id}`, 'POST', data)
+}
+
 export async function deleteOne(id) {
   return sendRequest(`${BASE_URL}/delete/${id}`, 'POST')
 }

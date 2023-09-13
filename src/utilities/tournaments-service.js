@@ -1,9 +1,11 @@
 import * as tAPI from './tournaments-api';
 
 export function create(data) {
-  const json = {}
-  json.name = data
-  return tAPI.create(json);
+  return tAPI.create(data);
+}
+
+export function update(id, data) {
+  return tAPI.update(id, data);
 }
 
 export function deleteOne(id) {
@@ -21,23 +23,23 @@ export function findOne(id) {
 export function addUser(id, uId) {
   const data = {}
   data.id = uId
-  tAPI.addUser(id, data)
+  return tAPI.addUser(id, data)
 }
 
 export function removeUser(id, uId) {
   const data = {}
   data.id = uId
-  tAPI.removeUser(id, data)
+  return tAPI.removeUser(id, data)
 }
 
 export function addCourse(id, uId) {
   const data = {}
   data.id = uId
-  tAPI.addCourse(id, data)
+  return tAPI.addCourse(id, data)
 }
 
 export function removeCourse(id, uId) {
   const data = {}
   data.id = uId
-  tAPI.removeCourse(id, data)
+  return tAPI.removeCourse(id, data)
 }

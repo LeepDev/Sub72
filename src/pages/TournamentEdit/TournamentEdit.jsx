@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { findOne, addUser, removeUser, addCourse, removeCourse } from '../../utilities/tournaments-service';
+import { update, findOne, addUser, removeUser, addCourse, removeCourse } from '../../utilities/tournaments-service';
 import { index as cIndex } from '../../utilities/courses-service';
 import { index as uIndex } from '../../utilities/users-service';
 import { useParams } from 'react-router-dom';
@@ -7,122 +7,166 @@ import { useParams } from 'react-router-dom';
 export default function TournamentEdit() {
     const { id } = useParams()
     const [tournament, setTournament] = useState(null)
-    const [courses, setCourses] = useState(null)
-    const [users, setUsers] = useState(null)
+    const [courses, setCourses] = useState({})
+    const [users, setUsers] = useState({})
+    const [formData, setFormData] = useState({})
+    
+    function handleChange(evt) {
+        setFormData({...formData, [evt.target.name]: evt.target.value});
+    }
+      
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+        try {
+            const t = await update(id, formData);
+            console.log(t)
+            setTournament(t)
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const fetchAll = async () => {
         try {
             const tournament = await findOne(id)
-            setTournament(tournament)
-            let courses = await cIndex()
-            if (tournament && tournament.courses) {
-                courses = courses.filter((c) => { return !tournament.courses.some((f) => f._id === c._id)})
-            }
-            setCourses(courses)
-            let users = await uIndex()
-            if (tournament && tournament.users) {
-                users = users.filter((u) => { return !tournament.users.some((f) => f._id === u._id)})
-            }
-            setUsers(users)
+            await setAll(tournament)
         } catch (err) {
             console.log(err)
         }
+    }
+
+    const setAll = async (tournament) => {
+        setTournament(tournament)
+        if (tournament)
+            setFormData({ "name": tournament.name, "rounds": tournament.rounds})
+        let courses = await cIndex()
+        if (tournament && tournament.courses) {
+            courses = courses.filter((c) => { return !tournament.courses.some((f) => f._id === c._id)})
+        }
+        setCourses(courses)
+        let users = await uIndex()
+        if (tournament && tournament.users) {
+            users = users.filter((u) => { return !tournament.users.some((f) => f._id === u._id)})
+        }
+        setUsers(users)
     }
 
     useEffect(() => {
         fetchAll()
     },[])
 
-    async function handleAddUser(uId) {
+    const handleAddUser = debounce(async(uId) => {
         try {
-            await addUser(id, uId)
-            fetchAll()
+            const t = await addUser(id, uId)
+            await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }
+    }, 300)
     
-    async function handleRemoveUser(uId) {
+    const handleRemoveUser = debounce(async(uId) => {
         try {
-            await removeUser(id, uId)
-            fetchAll()
+            const t = await removeUser(id, uId)
+            await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }
+    }, 300)
 
-    async function handleAddCourse(uId) {
+    const handleAddCourse = debounce(async(uId) => {
         try {
             await addCourse(id, uId)
             fetchAll()
         } catch (err) {
             console.log(err)
         }
-    }
+    }, 300)
     
-    async function handleRemoveCourse(uId) {
+    const handleRemoveCourse = debounce(async(uId) => {
         try {
             await removeCourse(id, uId)
             fetchAll()
         } catch (err) {
             console.log(err)
         }
-    }
+    }, 300)
 
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+            
     return (
         <div className="flex-ctr-ctr flex-col">
             <h1>Edit Tournament</h1>
             { 
                 tournament ? 
-                <h4>{tournament.name}</h4>
+                <>
+                    <div className="form-container flex-ctr-ctr">
+                        <form method="POST" onSubmit={handleSubmit} autoComplete="off">
+                            <label>Tournament Name:</label>
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                            <label>Rounds:</label>
+                            <input type="number" name="rounds" value={formData.rounds} onChange={handleChange} required />
+                            <button type="submit" >Update</button>
+                        </form>
+                    </div>
+
+                    <h3>{tournament.name}</h3>
+                    <h5>Rounds: {tournament.rounds}</h5>
+                </>
                 :
                 <div>Not Found</div> 
             }
+            <h5>Players:</h5>
             <div className="flex-ctr-ctr">
                 {
-                    tournament && tournament.users ? 
+                    tournament && tournament.users.length > 0 ? 
                     <>
                         <ul>
                             {tournament.users.map(u => <li key={u._id}>{u.name}<button className='red' onClick={() => handleRemoveUser(u._id)}>Remove</button></li>)}
                         </ul>
                     </>
                     :
-                    <p>No Users!</p>
+                    <p>No Players in tournament!</p>
                 }
                 &nbsp;
                 {
-                    tournament && tournament.courses ? 
-                    <>
-                        <ul>
-                            {tournament.courses.map(c => <li key={c._id}>{c.name}<button className='red' onClick={() => handleRemoveCourse(c._id)}>Remove</button></li>)}
-                        </ul>
-                    </>
-                    :
-                    <p>No courses!</p>
-                }
-            </div>
-            <h5>To Add:</h5>
-            <div className="flex-ctr-ctr">
-                {
-                    users ? 
+                    users.length > 0 ? 
                     <>
                         <ul>
                             {users.map(u => <li key={u._id}>{u.name}<button onClick={() => handleAddUser(u._id)}>Add</button></li>)}
                         </ul>
                     </>
                     :
-                    <p>No Users!</p>
+                    <p>No Players registered to the website!</p>
+                }
+            </div>
+            <h5>Courses:</h5>
+            <div className="flex-ctr-ctr">
+                {
+                    tournament && tournament.courses.length > 0 ? 
+                    <>
+                        <ul>
+                            {tournament.courses.map(c => <li key={c._id}>{c.name}<button className='red' onClick={() => handleRemoveCourse(c._id)}>Remove</button></li>)}
+                        </ul>
+                    </>
+                    :
+                    <p>No courses in tournament!</p>
                 }
                 &nbsp;
                 {
-                    courses ? 
+                    courses.length > 0 ? 
                     <>
                         <ul>
                             {courses.map(c => <li key={c._id}>{c.name}<button onClick={() => handleAddCourse(c._id)}>Add</button></li>)}
                         </ul>
                     </>
                     :
-                    <p>No courses!</p>
+                    <p>Add new courses!</p>
                 }
             </div>
         </div>

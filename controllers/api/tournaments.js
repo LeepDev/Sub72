@@ -8,12 +8,26 @@ module.exports = {
     addUser,
     removeUser,
     addCourse,
-    removeCourse
+    removeCourse,
+    update
 }
 
 async function create(req, res) {
     try {
         const tournament = await Tournament.create(req.body)
+        res.json(tournament)
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
+async function update(req, res) {
+    try {
+        const tournament = await Tournament.findById(req.params.id).populate('users').populate('courses')
+        console.log(req.body)
+        tournament.name = req.body.name
+        tournament.rounds = req.body.rounds
+        await tournament.save()
         res.json(tournament)
     } catch (err) {
         res.status(400).json(err)

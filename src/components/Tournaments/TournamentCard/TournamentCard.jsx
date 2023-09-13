@@ -10,7 +10,8 @@ export default function TournamentCard({ tournament, user, handleDelete }) {
 
     return (
         <div className="tournamentCard flex-ctr-ctr flex-col">
-            <p><span>Name: {tournament.name}</span></p>
+            <p><span>{tournament.name}</span></p>
+            <p>Rounds: {tournament.rounds}</p>
             { 
                 user.role && user.role === "O" &&
                 <div>
@@ -20,7 +21,7 @@ export default function TournamentCard({ tournament, user, handleDelete }) {
             }
             <div>---Courses---</div>
             {
-                tournament.courses ? 
+                tournament.courses.length > 0 ? 
                 <>
                     <ul>
                         {tournament.courses.map((c,idx) => <li key={idx}>{c.name}</li>)}
@@ -32,7 +33,7 @@ export default function TournamentCard({ tournament, user, handleDelete }) {
             }
             <div>---Players---</div>
             {
-                tournament.users ? 
+                tournament.users.length > 0 ? 
                 
                 <>
                     <ul>

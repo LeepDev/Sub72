@@ -7,6 +7,7 @@ const tCtrl = require('../../controllers/api/tournaments')
 // All paths start with '/api/tournaments'
 
 router.post('/', tCtrl.create)
+router.post('/:id', tCtrl.update)
 router.post('/delete/:id', tCtrl.deleteOne)
 router.post('/addUser/:id', tCtrl.addUser)
 router.post('/removeUser/:id', tCtrl.removeUser)

@@ -3,13 +3,18 @@ const Schema = mongoose.Schema;
 
 const tournamentSchema = new Schema({
   name: { type: String, required: true },
+  rounds: { type: Number, required: true },
   users: [{
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    unique: true,
+    sparse: true
   }],
   courses: [{
     type: Schema.Types.ObjectId,
-    ref: 'Course'
+    ref: 'Course',
+    unique: true,
+    sparse: true
   }],
 }, {
   timestamps: true
