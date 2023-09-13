@@ -32,14 +32,14 @@ export function removeUser(id, uId) {
   return tAPI.removeUser(id, data)
 }
 
-export function addCourse(id, uId) {
+export function addCourse(id, cId) {
   const data = {}
-  data.id = uId
+  data.id = cId
   return tAPI.addCourse(id, data)
 }
 
-export function removeCourse(id, uId) {
+export function removeCourse(id, cId) {
   const data = {}
-  data.id = uId
+  data.id = cId
   return tAPI.removeCourse(id, data)
 }

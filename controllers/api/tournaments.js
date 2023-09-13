@@ -17,6 +17,7 @@ async function create(req, res) {
         const tournament = await Tournament.create(req.body)
         res.json(tournament)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -30,6 +31,7 @@ async function update(req, res) {
         await tournament.save()
         res.json(tournament)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -39,6 +41,7 @@ async function deleteOne(req, res) {
         const tournament = await Tournament.deleteOne({_id: req.params.id})
         res.json(tournament)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -48,6 +51,7 @@ async function index(req, res) {
         const tournaments = await Tournament.find({}).populate('users').populate('courses')
         res.json(tournaments)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -57,6 +61,7 @@ async function findOne(req, res) {
         const tournament = await Tournament.findById(req.params.id).populate('users').populate('courses')
         res.json(tournament)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -66,6 +71,7 @@ async function addUser(req, res) {
         const t = await Tournament.findByIdAndUpdate(req.params.id, { $push: { users: req.body.id }}, { new: true}).populate('users').populate('courses')
         res.json(t)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -75,6 +81,7 @@ async function removeUser(req, res) {
         const t = await Tournament.findByIdAndUpdate(req.params.id, { $pull: { users: req.body.id }}, { new: true}).populate('users').populate('courses')
         res.json(t)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -84,6 +91,7 @@ async function addCourse(req, res) {
         const t = await Tournament.findByIdAndUpdate(req.params.id, { $push: { courses: req.body.id }}, { new: true}).populate('users').populate('courses')
         res.json(t)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }
@@ -93,6 +101,7 @@ async function removeCourse(req, res) {
         const t = await Tournament.findByIdAndUpdate(req.params.id, { $pull: { courses: req.body.id }}, { new: true}).populate('users').populate('courses')
         res.json(t)
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 }

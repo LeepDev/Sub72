@@ -73,18 +73,18 @@ export default function TournamentEdit() {
         }
     }, 300)
 
-    const handleAddCourse = debounce(async(uId) => {
+    const handleAddCourse = debounce(async(cId) => {
         try {
-            await addCourse(id, uId)
+            await addCourse(id, cId)
             fetchAll()
         } catch (err) {
             console.log(err)
         }
     }, 300)
     
-    const handleRemoveCourse = debounce(async(uId) => {
+    const handleRemoveCourse = debounce(async(cId) => {
         try {
-            await removeCourse(id, uId)
+            await removeCourse(id, cId)
             fetchAll()
         } catch (err) {
             console.log(err)
