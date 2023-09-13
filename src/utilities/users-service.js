@@ -55,3 +55,7 @@ export async function setRole(role) {
   localStorage.setItem('token', token)
   return getUser();
 }
+
+export function index() {
+  return usersAPI.index()
+}

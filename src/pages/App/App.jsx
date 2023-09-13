@@ -2,9 +2,10 @@ import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { getUser, setRole } from '../../utilities/users-service';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/Main/NavBar/NavBar';
 import AuthPage from '../AuthPage/AuthPage';
 import TournamentIndex from '../TournamentIndex/TournamentIndex';
+import TournamentEdit from '../TournamentEdit/TournamentEdit';
 import CourseIndex from '../CourseIndex/CourseIndex';
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
                 }
                 <Route path="/" element={ <><h1>Home</h1></> } />
                 <Route path="/tournaments" element={<TournamentIndex user={user} />} />
+                <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
                 <Route path="/courses" element={<CourseIndex user={user} />} />
                 <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>

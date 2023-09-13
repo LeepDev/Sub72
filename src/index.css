@@ -35,6 +35,10 @@ code {
   height: 100%;
 }
 
+.red {
+  background-color: red;
+}
+
 .flex-ctr-start {
   display: flex;
   justify-content: center;

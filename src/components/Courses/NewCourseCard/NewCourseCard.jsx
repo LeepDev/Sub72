@@ -1,6 +1,6 @@
 import './NewCourseCard.css';
 import { useState } from "react";
-import * as cService from '../../utilities/course-service';
+import * as cService from '../../../utilities/courses-service';
 
 export default function NewCourseCard({ fetchCourses }) {
     const [name, setName] = useState('')

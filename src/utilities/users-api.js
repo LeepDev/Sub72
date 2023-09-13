@@ -18,3 +18,7 @@ export async function checkToken() {
 export async function setRole(role) {
   return sendRequest(`${BASE_URL}/set-role`, 'POST', role)
 }
+
+export async function index() {
+  return sendRequest(`${BASE_URL}`)
+}

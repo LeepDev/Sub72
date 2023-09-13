@@ -16,4 +16,6 @@ router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 // POST /api/users/set-role
 router.post('/set-role', ensureLoggedIn, usersCtrl.setRole);
 
+router.get('/', usersCtrl.index)
+
 module.exports = router

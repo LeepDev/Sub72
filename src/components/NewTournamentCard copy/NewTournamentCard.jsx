@@ -1,6 +1,6 @@
 import './NewTournamentCard.css';
 import { useState } from "react";
-import * as tService from '../../utilities/tournament-service';
+import * as tService from '../../utilities/tournaments-service';
 
 export default function NewTournamentCard({ fetchTournaments }) {
     const [name, setName] = useState('')

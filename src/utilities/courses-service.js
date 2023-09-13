@@ -1,4 +1,4 @@
-import * as cAPI from './course-api';
+import * as cAPI from './courses-api';
 
 export async function create(data) {
   const json = {}

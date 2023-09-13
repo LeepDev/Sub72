@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import TournamentCardIndex from '../../components/TournamentCardIndex/TournamentCardIndex'
-import NewTournamentCard from '../../components/NewTournamentCard/NewTournamentCard';
-import { index, deleteOne } from '../../utilities/tournament-service';
+import TournamentCardIndex from '../../components/Tournaments/TournamentCardIndex/TournamentCardIndex'
+import NewTournamentCard from '../../components/Tournaments/NewTournamentCard/NewTournamentCard';
+import { index, deleteOne } from '../../utilities/tournaments-service';
 
 export default function TournamentIndex({user}) {
     const [tournaments, setTournaments] = useState({})

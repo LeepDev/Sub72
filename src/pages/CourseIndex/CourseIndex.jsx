@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import CourseCardIndex from '../../components/CourseCardIndex/CourseCardIndex'
-import NewCourseCard from '../../components/NewCourseCard/NewCourseCard';
-import { index, deleteOne } from '../../utilities/course-service';
+import CourseCardIndex from '../../components/Courses/CourseCardIndex/CourseCardIndex'
+import NewCourseCard from '../../components/Courses/NewCourseCard/NewCourseCard';
+import { index, deleteOne } from '../../utilities/courses-service';
 
 export default function CourseIndex({user}) {
     const [courses, setCourses] = useState({})
