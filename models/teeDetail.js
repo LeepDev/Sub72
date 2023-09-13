@@ -8,8 +8,8 @@ const teeDetailSchema = new Schema({
   distanceTotal: { type: Number, required: true },
   rating: { type: Number, required: true },
   slope: { type: Number, required: true },
-  holeDistances: [{ type: Number, required: true }],
-  course: { type: Schema.Types.ObjectId, ref: 'Course' }
+  holeDistances: [{ type: Number }],
+  course: { type: Schema.Types.ObjectId, ref: 'Course', required: true }
 }, {
   timestamps: true
 });

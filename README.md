@@ -89,3 +89,4 @@ AAP (As A Player):
     * I want to be able to join rounds
     * I want to be able to join groups
     * I want to be able to put in scores
+* Add validation to all models
