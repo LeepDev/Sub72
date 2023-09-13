@@ -7,13 +7,11 @@ const tournamentSchema = new Schema({
   users: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
-    unique: true,
     sparse: true
   }],
   courses: [{
     type: Schema.Types.ObjectId,
     ref: 'Course',
-    unique: true,
     sparse: true
   }],
 }, {
