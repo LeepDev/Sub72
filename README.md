@@ -35,17 +35,11 @@ Welcome to Sub72!  This app was created to support amatuer golf events as well a
 ## User Stories
 
 AAO (As An Organizer):
-* I want to be able to search a course db
-* I want to be able to add mini games
-* I want to be able to add current round games
 * I want to be able to edit players, rounds, groups, courses and tournaments
 
 AAP (As A Player):
 * I want to be able to join tournaments
-* I want to be able to join rounds
-* I want to be able to join groups
 * I want to be able see details for the above
-* I want to be able to put in scores
 
 ## MVP
 * Refactor MERN Starter Project
@@ -56,11 +50,7 @@ AAP (As A Player):
         * Player
         * Tournament
         * Course
-        * Group
-        * Scorecard
-        * MiniGames
-        * RoundGames
-* Seed with 2 course data
+* Seed with course data
     * 18 holes
     * 3 distances
         * red
@@ -86,3 +76,16 @@ AAP (As A Player):
 * Include course details with hole by hole images
 * Live Leader dashboard
 * Add a rules section with the ability to request amendments to the rules
+* Orgainizer Functionalities:
+    * I want to be able to search a course db
+    * I want to be able to add mini games
+    * I want to be able to add current round games
+* Add Models
+    * Group
+    * Scorecard
+    * MiniGames
+    * RoundGames
+* Player Functionalities:
+    * I want to be able to join rounds
+    * I want to be able to join groups
+    * I want to be able to put in scores

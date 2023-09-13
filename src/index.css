@@ -35,6 +35,13 @@ code {
   height: 100%;
 }
 
+
+ul {
+  list-style: none;
+  text-align: center;
+  padding-left: 0; /* Remove default padding */
+}
+
 .red {
   background-color: red;
 }

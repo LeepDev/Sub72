@@ -42,6 +42,7 @@ const data = require('./data');
   // console.log(teeDetail)
 
   async function saveTee(td) {
+    let teeDetail = new TeeDetail()
     teeDetail.color = td["color"]
     teeDetail.rating = td["rating"]
     teeDetail.slope = td["slope"]
@@ -54,7 +55,6 @@ const data = require('./data');
     console.log(teeDetail)
   }
 
-  let teeDetail = new TeeDetail()
   await saveTee(data.teeDetails[0])
   await saveTee(data.teeDetails[1])
   await saveTee(data.teeDetails[2])

@@ -4,10 +4,10 @@ import { Routes, Route } from 'react-router-dom'
 import { getUser, setRole } from '../../utilities/users-service';
 import NavBar from '../../components/Main/NavBar/NavBar';
 import AuthPage from '../AuthPage/AuthPage';
-import TournamentIndex from '../TournamentIndex/TournamentIndex';
-import TournamentEdit from '../TournamentEdit/TournamentEdit';
-import CourseIndex from '../CourseIndex/CourseIndex';
-import CourseDetails from '../CourseDetails/CourseDetails';
+import TournamentIndex from '../Tournament/TournamentIndex/TournamentIndex';
+import TournamentEdit from '../Tournament/TournamentEdit/TournamentEdit';
+import CourseIndex from '../Course/CourseIndex/CourseIndex';
+import CourseDetails from '../Course/CourseDetails/CourseDetails';
 
 export default function App() {
   const [user, setUser] = useState(getUser())

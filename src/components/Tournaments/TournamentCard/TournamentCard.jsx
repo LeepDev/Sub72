@@ -19,7 +19,14 @@ export default function TournamentCard({ tournament, user, handleDelete }) {
                     <button className='red' onClick={() => handleDelete(tournament._id)}>Delete</button>
                 </div>
             }
-            <div>---Courses---</div>
+            {/* { 
+                user.role && user.role === "P" &&
+                <div>
+                    <button className='red' onClick={() => handleJoin(tournament._id)}>Join</button>
+                    <button className='red' onClick={() => handleLeave(tournament._id)}>Leave</button>
+                </div>
+            } */}
+            <p><span>Courses</span></p>
             {
                 tournament.courses.length > 0 ? 
                 <>
@@ -31,7 +38,7 @@ export default function TournamentCard({ tournament, user, handleDelete }) {
                 <p>No Courses!</p>
                 
             }
-            <div>---Players---</div>
+            <p><span>Players</span></p>
             {
                 tournament.users.length > 0 ? 
                 

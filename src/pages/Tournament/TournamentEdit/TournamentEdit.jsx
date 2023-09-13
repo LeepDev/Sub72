@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { update, findOne, addUser, removeUser, addCourse, removeCourse } from '../../utilities/tournaments-service';
-import { index as cIndex } from '../../utilities/courses-service';
-import { index as uIndex } from '../../utilities/users-service';
+import { update, findOne, addUser, removeUser, addCourse, removeCourse } from '../../../utilities/tournaments-service';
+import { index as cIndex } from '../../../utilities/courses-service';
+import { index as uIndex } from '../../../utilities/users-service';
 import { useParams } from 'react-router-dom';
 
 export default function TournamentEdit() {
@@ -116,7 +116,7 @@ export default function TournamentEdit() {
                     </div>
 
                     <h3>{tournament.name}</h3>
-                    <h5>Rounds: {tournament.rounds}</h5>
+                    <div>Rounds: {tournament.rounds}</div>
                 </>
                 :
                 <div>Not Found</div> 
@@ -166,7 +166,7 @@ export default function TournamentEdit() {
                         </ul>
                     </>
                     :
-                    <p>Add new courses!</p>
+                    <p>Add more new courses!</p>
                 }
             </div>
         </div>
