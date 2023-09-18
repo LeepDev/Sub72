@@ -28,6 +28,10 @@ async function update(req, res) {
         console.log(req.body)
         tournament.name = req.body.name
         tournament.rounds = req.body.rounds
+        if (req.body.live)
+            tournament.live = true
+        else
+            tournament.live = false
         await tournament.save()
         res.json(tournament)
     } catch (err) {

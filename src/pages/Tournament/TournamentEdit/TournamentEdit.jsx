@@ -26,19 +26,11 @@ export default function TournamentEdit() {
         }
     }
 
-    const fetchAll = async () => {
-        try {
-            const tournament = await findOne(id)
-            await setAll(tournament)
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
     const setAll = async (tournament) => {
         setTournament(tournament)
         if (tournament)
-            setFormData({ "name": tournament.name, "rounds": tournament.rounds})
+            setFormData({ "name": tournament.name, "rounds": tournament.rounds, "live": tournament.live })
         let courses = await cIndex()
         if (tournament && tournament.courses) {
             courses = courses.filter((c) => { return !tournament.courses.some((f) => f._id === c._id)})
@@ -52,6 +44,14 @@ export default function TournamentEdit() {
     }
 
     useEffect(() => {
+        const fetchAll = async () => {
+            try {
+                const tournament = await findOne(id)
+                await setAll(tournament)
+            } catch (err) {
+                console.log(err)
+            }
+        }
         fetchAll()
     },[])
 
@@ -75,8 +75,8 @@ export default function TournamentEdit() {
 
     const handleAddCourse = debounce(async(cId) => {
         try {
-            await addCourse(id, cId)
-            fetchAll()
+            const t = await addCourse(id, cId)
+            await setAll(t)
         } catch (err) {
             console.log(err)
         }
@@ -84,8 +84,8 @@ export default function TournamentEdit() {
     
     const handleRemoveCourse = debounce(async(cId) => {
         try {
-            await removeCourse(id, cId)
-            fetchAll()
+            const t = await removeCourse(id, cId)            
+            await setAll(t)
         } catch (err) {
             console.log(err)
         }
@@ -111,12 +111,15 @@ export default function TournamentEdit() {
                             <input type="text" name="name" value={formData.name} onChange={handleChange} required />
                             <label>Rounds:</label>
                             <input type="number" name="rounds" value={formData.rounds} onChange={handleChange} required />
+                            <label>Live:</label>
+                                <input type="checkbox" checked={formData.live} onChange={() => setFormData({...formData, ["live"]: !formData.live })} />
                             <button type="submit" >Update</button>
                         </form>
                     </div>
 
                     <h3>{tournament.name}</h3>
                     <div>Rounds: {tournament.rounds}</div>
+                    <div>Live: {tournament.live ? "yes" : "no"}</div>
                 </>
                 :
                 <div>Not Found</div> 

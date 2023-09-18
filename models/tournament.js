@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 const tournamentSchema = new Schema({
   name: { type: String, required: true },
   rounds: { type: Number, required: true },
+  live: {
+    type: Boolean,
+    default: false
+  },
   users: [{
     type: Schema.Types.ObjectId,
     ref: 'User',

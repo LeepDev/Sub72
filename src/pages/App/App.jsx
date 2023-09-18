@@ -8,6 +8,7 @@ import TournamentIndex from '../Tournament/TournamentIndex/TournamentIndex';
 import TournamentEdit from '../Tournament/TournamentEdit/TournamentEdit';
 import CourseIndex from '../Course/CourseIndex/CourseIndex';
 import CourseDetails from '../Course/CourseDetails/CourseDetails';
+import Home from '../Home/Home';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -36,7 +37,7 @@ export default function App() {
                         {/* <Route path="/tournaments/new" element={ <NewTournament /> } /> */}
                     </>
                 }
-                <Route path="/" element={ <><h1>Home</h1></> } />
+                <Route path="/" element={ <Home user={user} /> } />
                 <Route path="/tournaments" element={<TournamentIndex user={user} />} />
                 <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
                 <Route path="/courses" element={<CourseIndex user={user} />} />
