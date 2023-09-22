@@ -1,4 +1,3 @@
-import './NewCourseCard.css';
 import { useState } from "react";
 import * as cService from '../../../utilities/courses-service';
 

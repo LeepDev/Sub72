@@ -1,4 +1,3 @@
-import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { getUser, setRole } from '../../utilities/users-service';
@@ -8,7 +7,7 @@ import TournamentIndex from '../Tournament/TournamentIndex/TournamentIndex';
 import TournamentEdit from '../Tournament/TournamentEdit/TournamentEdit';
 import CourseIndex from '../Course/CourseIndex/CourseIndex';
 import CourseDetails from '../Course/CourseDetails/CourseDetails';
-import Home from '../Home/Home';
+import Dashboard from '../Dashboard/Dashboard';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -25,19 +24,13 @@ export default function App() {
   }
 
   return (
-    <main className="App">
+    <main className="antialiased text-gray-900 px-6">
       { user ? 
           user.role ?
             <>
               <NavBar user={user} setUser={setUser} />
               <Routes>
-                {   user.role === "O" &&
-                    <>
-                        {/* <Route path="/tournaments/new" element={<><h1>New Tourney</h1></>} /> */}
-                        {/* <Route path="/tournaments/new" element={ <NewTournament /> } /> */}
-                    </>
-                }
-                <Route path="/" element={ <Home user={user} /> } />
+                <Route path="/" element={ <Dashboard user={user} /> } />
                 <Route path="/tournaments" element={<TournamentIndex user={user} />} />
                 <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
                 <Route path="/courses" element={<CourseIndex user={user} />} />

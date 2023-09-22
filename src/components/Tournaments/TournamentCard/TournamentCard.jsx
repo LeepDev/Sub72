@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import './TournamentCard.css';
 import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../../../utilities/tournaments-service';
 
 export default function TournamentCard({ tournament, user, handleDelete, fetchTournaments }) {
     const navigate = useNavigate()
     const [joined, setJoined] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false);
 
     function navigateToEdit(id) {
         navigate(`/tournaments/${id}/edit`)
@@ -19,34 +19,29 @@ export default function TournamentCard({ tournament, user, handleDelete, fetchTo
         }
         else
             setJoined(false)
+            setIsDisabled(false)
     }
     
-    const handleJoin = debounce(async(tId) => {
+    const handleJoin = async(tId) => {
         try {
             await addUser(tId, user._id)
-            setJoined(true)
             fetchTournaments()
+            setJoined(true)
+            setIsDisabled(false)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
+    }
     
-    const handleLeave = debounce(async(tId) => {
+    const handleLeave = async(tId) => {
         try {
             await removeUser(tId, user._id)
-            setJoined(false)
             fetchTournaments()
+            setJoined(false)
+            setIsDisabled(false)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
-
-    function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(this, args), wait);
-        };
     }
 
     useEffect(() => {
@@ -60,18 +55,17 @@ export default function TournamentCard({ tournament, user, handleDelete, fetchTo
             { 
                 user.role && user.role === "O" &&
                 <div>
-                    <button onClick={() => navigateToEdit(tournament._id)}>Edit</button>
-                    <button className='red' onClick={() => handleDelete(tournament._id)}>Delete</button>
+                    <button disabled={isDisabled} onClick={() => navigateToEdit(tournament._id)}>Edit</button>
+                    <button className='red' disabled={isDisabled} onClick={() => {setIsDisabled(true);handleDelete(tournament._id)}}>Delete</button>
                 </div>
             }
             { 
-                user.role && user.role === "P" && 
                 <div>
                     {
                         joined ?
-                        <button className='red' onClick={() => handleLeave(tournament._id)}>Leave</button>
+                        <button className='red' disabled={isDisabled} onClick={() => {setIsDisabled(true);handleLeave(tournament._id)}}>Leave</button>
                         :
-                        <button onClick={() => handleJoin(tournament._id)}>Join</button>
+                        <button disabled={isDisabled} onClick={() => {setIsDisabled(true);handleJoin(tournament._id)}}>Join</button>
                     }
                 </div>
             }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { index } from '../../utilities/tournaments-service';
 import TournamentCardIndex from '../../components/Tournaments/TournamentCardIndex/TournamentCardIndex';
 
-export default function Home({user}) {
+export default function Dashboard({user}) {
     const [liveT, setLiveT] = useState({})
 
     const fetchTournaments = async () => {

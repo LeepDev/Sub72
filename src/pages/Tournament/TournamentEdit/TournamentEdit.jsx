@@ -10,6 +10,7 @@ export default function TournamentEdit() {
     const [courses, setCourses] = useState({})
     const [users, setUsers] = useState({})
     const [formData, setFormData] = useState({})
+    const [isDisabled, setIsDisabled] = useState(false);
     
     function handleChange(evt) {
         setFormData({...formData, [evt.target.name]: evt.target.value});
@@ -41,6 +42,7 @@ export default function TournamentEdit() {
             users = users.filter((u) => { return !tournament.users.some((f) => f._id === u._id)})
         }
         setUsers(users)
+        setIsDisabled(false)
     }
 
     useEffect(() => {
@@ -55,48 +57,40 @@ export default function TournamentEdit() {
         fetchAll()
     },[])
 
-    const handleAddUser = debounce(async(uId) => {
+    const handleAddUser = async(uId) => {
         try {
             const t = await addUser(id, uId)
             await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
+    }
     
-    const handleRemoveUser = debounce(async(uId) => {
+    const handleRemoveUser = async(uId) => {
         try {
             const t = await removeUser(id, uId)
             await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
+    }
 
-    const handleAddCourse = debounce(async(cId) => {
+    const handleAddCourse = async(cId) => {
         try {
             const t = await addCourse(id, cId)
             await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
+    }
     
-    const handleRemoveCourse = debounce(async(cId) => {
+    const handleRemoveCourse = async(cId) => {
         try {
             const t = await removeCourse(id, cId)            
             await setAll(t)
         } catch (err) {
             console.log(err)
         }
-    }, 300)
-
-    function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(this, args), wait);
-        };
     }
             
     return (
@@ -130,7 +124,7 @@ export default function TournamentEdit() {
                     tournament && tournament.users.length > 0 ? 
                     <>
                         <ul>
-                            {tournament.users.map(u => <li key={u._id}>{u.name}<button className='red' onClick={() => handleRemoveUser(u._id)}>Remove</button></li>)}
+                            {tournament.users.map(u => <li key={u._id}>{u.name}<button className='red' disabled={isDisabled} onClick={() => {setIsDisabled(true); handleRemoveUser(u._id)}}>Remove</button></li>)}
                         </ul>
                     </>
                     :
@@ -141,7 +135,7 @@ export default function TournamentEdit() {
                     users.length > 0 ? 
                     <>
                         <ul>
-                            {users.map(u => <li key={u._id}>{u.name}<button onClick={() => handleAddUser(u._id)}>Add</button></li>)}
+                            {users.map(u => <li key={u._id}>{u.name}<button disabled={isDisabled} onClick={() => {setIsDisabled(true); handleAddUser(u._id)}}>Add</button></li>)}
                         </ul>
                     </>
                     :
@@ -154,7 +148,7 @@ export default function TournamentEdit() {
                     tournament && tournament.courses.length > 0 ? 
                     <>
                         <ul>
-                            {tournament.courses.map(c => <li key={c._id}>{c.name}<button className='red' onClick={() => handleRemoveCourse(c._id)}>Remove</button></li>)}
+                            {tournament.courses.map(c => <li key={c._id}>{c.name}<button disabled={isDisabled} className='red' onClick={() => {setIsDisabled(true);handleRemoveCourse(c._id)}}>Remove</button></li>)}
                         </ul>
                     </>
                     :
@@ -165,7 +159,7 @@ export default function TournamentEdit() {
                     courses.length > 0 ? 
                     <>
                         <ul>
-                            {courses.map(c => <li key={c._id}>{c.name}<button onClick={() => handleAddCourse(c._id)}>Add</button></li>)}
+                            {courses.map(c => <li key={c._id}>{c.name}<button disabled={isDisabled} onClick={() => {setIsDisabled(true);handleAddCourse(c._id)}}>Add</button></li>)}
                         </ul>
                     </>
                     :

@@ -1,4 +1,3 @@
-import './NewTournamentCard.css';
 import { useState } from "react";
 import { create } from '../../../utilities/tournaments-service';
 

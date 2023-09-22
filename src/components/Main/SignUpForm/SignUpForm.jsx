@@ -2,19 +2,6 @@ import { Component } from 'react'
 import { signUp } from '../../../utilities/users-service';
 
 export default class SignUpForm extends Component {
-    // Old way of maintaining state: state is always an object with a property for each "piece" of state
-    // constructor() {
-    //     this.state = {
-    //     name: '',
-    //     email: '',
-    //     password: '',
-    //     confirm: '',
-    //     error: ''
-    //     };
-    //     this.handleChange = this.handleChange.bind(this);
-    // }
-    // handleChange(evt) {  alert(JSON.stringify(this.state))  }
-
     state = {
         name: '',
         email: '',
@@ -55,20 +42,26 @@ export default class SignUpForm extends Component {
     render() {
         const disable = this.state.password !== this.state.confirm;
         return (
-          <div>
-            <div className="form-container">
-              <form autoComplete="off" onSubmit={this.handleSubmit}>
-                <label>Name</label>
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
-                <label>Email</label>
-                <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-                <label>Password</label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-                <label>Confirm</label>
-                <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+          <div className='py-12'>
+              <form autoComplete="off" onSubmit={this.handleSubmit} className='grid grid-cols-1 gap-6'>
+                <label className='block'>
+                  <span className='text-gray-700'>Name</span>
+                  <input placeholder="John Smith" className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
+                </label>
+                <label className='block'>
+                  <span className='text-gray-700'>Email</span>
+                  <input placeholder="john@example.com" className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+                </label>
+                <label className='block'>
+                  <span className='text-gray-700'>Password</span>
+                  <input placeholder="**********" className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+                </label>
+                <label className='block'>
+                  <span className='text-gray-700'>Confirm Password</span>
+                  <input placeholder="**********" className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+                </label>
                 <button type="submit" disabled={disable}>SIGN UP</button>
               </form>
-            </div>
             <p className="error-message">&nbsp;{this.state.error}</p>
           </div>
         );}
