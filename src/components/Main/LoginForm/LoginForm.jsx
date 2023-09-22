@@ -38,9 +38,9 @@ export default function LoginForm({ setUser }) {
           <span className='text-gray-700'>Password</span>
           <input className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="password" name="password" placeholder="**********" value={credentials.password} onChange={handleChange} required />
         </label>
-        <button type="submit">LOG IN</button>
+        <button className="bg-green-300 py-1 rounded-md text-white outline outline-slate-100" type="submit">LOGIN</button>
       </form>
-      <p className="error-message">&nbsp;{error}</p>
+      <p className="text-red-300 text-center mt-5">&nbsp;{error}</p>
     </div>
   );
 }

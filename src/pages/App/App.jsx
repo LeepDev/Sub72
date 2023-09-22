@@ -24,38 +24,45 @@ export default function App() {
   }
 
   return (
-    <main className="antialiased text-gray-900 px-6">
-      { user ? 
+    <>
+      { 
+        user ? 
           user.role ?
             <>
               <NavBar user={user} setUser={setUser} />
               <Routes>
-                <Route path="/" element={ <Dashboard user={user} /> } />
-                <Route path="/tournaments" element={<TournamentIndex user={user} />} />
-                <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
-                <Route path="/courses" element={<CourseIndex user={user} />} />
-                <Route path="/courses/:id" element={<CourseDetails />} />
-                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
+              <Route path="/" element={ <Dashboard user={user} /> } />
+              <Route path="/tournaments" element={<TournamentIndex user={user} />} />
+              <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
+              <Route path="/courses" element={<CourseIndex user={user} />} />
+              <Route path="/courses/:id" element={<CourseDetails />} />
+              <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>
             </>
           :
-            <div className="flex-ctr-ctr flex-col">
-              <h1>Welcome to Sub 72</h1>
-
-              <h2>Roles:</h2>
-              <button onClick={handleSetRole} value="O" >Organizer</button>
-              <button onClick={handleSetRole} value="P" >Player</button>
-              <p style={{ fontWeight: "bold" }}>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
-              {
-                error ? 
-                  <p>{error}</p>
-                :
-                  <></>
-              }
-            </div>
+            <main className="antialiased flex flex-col justify-center items-center h-full">
+              <div className='bg-white flex flex-col justify-center items-center drop-shadow-lg rounded-lg'>
+                <h1 className='text-2xl font-bold'>Welcome to Sub 72</h1>
+                <br></br>
+                <h2 className='font-bold'>Roles:</h2>
+                <div className='flex flex-row my-5'>
+                  <button className='mx-5 rounded-full bg-orange-300 py-1 px-4 outline-double outline-red-200' onClick={handleSetRole} value="O" >Organizer</button>
+                  <button className='mx-5 rounded-full bg-green-300 py-1 px-4 outline-double outline-red-200' onClick={handleSetRole} value="P" >Player</button>
+                </div>
+                <p className='text-center py-5 px-5' style={{ fontWeight: "bold" }}>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
+                {
+                  error ? 
+                    <p>{error}</p>
+                  :
+                    <></>
+                }
+              </div>
+            </main>
         :
+        <main className="antialiased flex flex-col justify-center items-center h-full">
           <AuthPage setUser={setUser} />
+        </main>
       }
-    </main>
+    </>
   );
 }

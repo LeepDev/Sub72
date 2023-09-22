@@ -6,17 +6,18 @@ import {useState} from 'react'
 export default function AuthPage({setUser}) {
     const [showSignUp, setSignUp] = useState(false)
     return (
-        <div className="max-w-xl mx-auto py-12 divide-y md:max-w-4xl">
-            <h1 className="text-2xl font-bold">AuthPage</h1>
+        <div className="py-20 px-12 md:max-w-4xl bg-white drop-shadow-lg rounded-lg">
             { showSignUp ? 
                 <div className="flex flex-col">
+                    <h1 className="text-2xl font-bold">Sign Up</h1>
                     <SignUpForm setUser={setUser} />
-                    <button onClick={() => setSignUp(!showSignUp)}>Login</button>
+                    <button onClick={() => setSignUp(!showSignUp)}>LOGIN</button>
                 </div>
             :
                 <div className="flex flex-col">
+                    <h1 className="text-2xl font-bold">Login</h1>
                     <LoginForm setUser={setUser} />
-                    <button onClick={() => setSignUp(!showSignUp)}>Sign Up</button>
+                    <button onClick={() => setSignUp(!showSignUp)}>SIGN UP</button>
                 </div>
             }
         </div>
