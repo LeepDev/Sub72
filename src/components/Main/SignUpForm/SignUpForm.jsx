@@ -60,7 +60,7 @@ export default class SignUpForm extends Component {
                   <span className='text-gray-700'>Confirm Password</span>
                   <input placeholder="**********" className='mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0' type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
                 </label>
-                <button className="bg-green-300 py-1 rounded-md text-white outline outline-slate-100" type="submit" disabled={disable}>SIGN UP</button>
+                <button className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit" disabled={disable}>SIGN UP</button>
               </form>
             <p className="text-red-300 text-center mt-5">&nbsp;{this.state.error}</p>
           </div>

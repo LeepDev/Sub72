@@ -11,13 +11,13 @@ export default function AuthPage({setUser}) {
                 <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">Sign Up</h1>
                     <SignUpForm setUser={setUser} />
-                    <button onClick={() => setSignUp(!showSignUp)}>LOGIN</button>
+                    <button onClick={() => setSignUp(!showSignUp)}>GO TO  <a className="ml-auto text-blue-700 hover:underline dark:text-blue-500">LOGIN</a></button>
                 </div>
             :
                 <div className="flex flex-col">
                     <h1 className="text-2xl font-bold">Login</h1>
                     <LoginForm setUser={setUser} />
-                    <button onClick={() => setSignUp(!showSignUp)}>SIGN UP</button>
+                    <button onClick={() => setSignUp(!showSignUp)}>GO TO <a className="ml-auto text-blue-700 hover:underline dark:text-blue-500">SIGN UP</a></button>
                 </div>
             }
         </div>

@@ -28,17 +28,17 @@ export default function App() {
       { 
         user ? 
           user.role ?
-            <>
+            <main className='grid grid-flow-row-dense grid-row-auto grid-col-auto'>
               <NavBar user={user} setUser={setUser} />
               <Routes>
-              <Route path="/" element={ <Dashboard user={user} /> } />
-              <Route path="/tournaments" element={<TournamentIndex user={user} />} />
-              <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
-              <Route path="/courses" element={<CourseIndex user={user} />} />
-              <Route path="/courses/:id" element={<CourseDetails />} />
-              <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
+                <Route path="/" element={ <Dashboard user={user} /> } />
+                <Route path="/tournaments" element={<TournamentIndex user={user} />} />
+                <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
+                <Route path="/courses" element={<CourseIndex user={user} />} />
+                <Route path="/courses/:id" element={<CourseDetails />} />
+                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
               </Routes>
-            </>
+            </main>
           :
             <main className="antialiased flex flex-col justify-center items-center h-full">
               <div className='bg-white flex flex-col justify-center items-center drop-shadow-lg rounded-lg'>
