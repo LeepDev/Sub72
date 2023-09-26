@@ -31,7 +31,7 @@ export default function AuthPage({setUser}) {
         <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             { showSignUp ? 
                 <div className="flex flex-col">
-                    <div className="flex space-x-20">
+                    <div className="flex gap-5">
                         <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Sign Up</h1>
                         <button onClick={toggleDarkMode} id="theme-toggle" type="button" className="place-self-right flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                             {
@@ -51,7 +51,7 @@ export default function AuthPage({setUser}) {
                 </div>
             :
                 <div className="flex flex-col">
-                    <div className="flex space-x-20">
+                    <div className="flex gap-20">
                         <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Login</h1>
                         <button onClick={toggleDarkMode} id="theme-toggle" type="button" className="place-self-right flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                             {

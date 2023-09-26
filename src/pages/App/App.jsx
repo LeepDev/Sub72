@@ -52,14 +52,15 @@ export default function App() {
                 <p className='text-center py-5 px-5' style={{ fontWeight: "bold" }}>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
                 {
                   error ? 
-                    <p>{error}</p>
+                  <p>{error}</p>
                   :
-                    <></>
+                  <></>
                 }
               </div>
             </main>
         :
         <main className="antialiased flex flex-col justify-center items-center h-full">
+          <h1 className='block mb-10 text-6xl font-medium text-gray-900 dark:text-white'>Welcome to Sub 72</h1>
           <AuthPage setUser={setUser} />
         </main>
       }
