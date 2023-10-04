@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { index, deleteOne } from '../../../utilities/tournaments-service';
-import NewTournamentCard from '../../../components/Tournaments/NewTournamentCard/NewTournamentCard';
 import TournamentCardIndex from '../../../components/Tournaments/TournamentCardIndex/TournamentCardIndex';
 
-export default function TournamentIndex({user}) {
+export default function TournamentIndex({user, isMobile}) {
     const [tournaments, setTournaments] = useState({})
+    const navigate = useNavigate()
 
     const fetchTournaments = async () => {
         const tournaments = await index()
@@ -25,17 +26,13 @@ export default function TournamentIndex({user}) {
     }, [])
 
     return (
-        <div className="flex-ctr-ctr flex-col">
-            <h1>Tournaments</h1>
-            <div className="flex-ctr-ctr">
-                <TournamentCardIndex fetchTournaments={fetchTournaments} tournaments={tournaments} user={user} handleDelete={handleDelete} />
-                {
-                    user.role === 'O' &&
-                    <div className="flex-ctr-start margin-2vh">
-                        <NewTournamentCard fetchTournaments={fetchTournaments} />
-                    </div>
-                }
-            </div>
+        <div className="flex items-center flex-col">
+            <h1 className='text-3xl m-4 font-bold tracking-tight text-gray-900 dark:text-white'>Tournaments</h1>
+            {
+                user.role === 'O' &&
+                <button onClick={() => navigate(`/tournaments/new`)} className='text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>Add Tournament</button>
+            }
+            <TournamentCardIndex fetchTournaments={fetchTournaments} tournaments={tournaments} user={user} handleDelete={handleDelete} isMobile={isMobile} />
         </div>
     );
 }

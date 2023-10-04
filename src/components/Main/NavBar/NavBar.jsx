@@ -1,16 +1,14 @@
 import { Link, useLocation } from 'react-router-dom'
 import * as userService from '../../../utilities/users-service'
 import { useState, useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive';
 
-export default function NavBar ({user, setUser, appClose}) {
+export default function NavBar ({user, setUser, appClose, isMobile}) {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [menuOpen, setMenuOpen] = useState(appClose);
     const location = useLocation()
     const nonActiveClass = "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
     const activeClass = "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
     const menuOpenClass = "w-full md:block md:w-auto"
-    const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
     // On component mount, read the initial theme from localStorage or default to light
     useEffect(() => {
@@ -56,13 +54,13 @@ export default function NavBar ({user, setUser, appClose}) {
                     <div className={isMobile ? (menuOpen ? menuOpenClass : "hidden") : menuOpenClass} id="navbar-default">
                         <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li>
-                                <Link to="/" onClick={() => setMenuOpen(!menuOpen)} className={(location.pathname == "/" ? activeClass : nonActiveClass)} aria-current="page">{user.name} Dashboard</Link>
+                                <Link to="/" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/" ? activeClass : nonActiveClass)} aria-current="page">{user.name} Dashboard</Link>
                             </li>
                             <li>
-                                <Link to="/tournaments" onClick={() => setMenuOpen(!menuOpen)} className={(location.pathname == "/tournaments" ? activeClass : nonActiveClass)}>Tournaments</Link>
+                                <Link to="/tournaments" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/tournaments" ? activeClass : nonActiveClass)}>Tournaments</Link>
                             </li>
                             <li>
-                                <Link to="/courses" onClick={() => setMenuOpen(!menuOpen)} className={(location.pathname == "/courses" ? activeClass : nonActiveClass)}>Courses</Link>
+                                <Link to="/courses" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/courses" ? activeClass : nonActiveClass)}>Courses</Link>
                             </li>
                             <li>
                                 <Link to="" className={nonActiveClass} onClick={handleLogOut}>Log Out</Link>
@@ -88,7 +86,7 @@ export default function NavBar ({user, setUser, appClose}) {
                 </div>
             </nav>
             {
-                menuOpen && <div tabindex="-1" aria-hidden="true" className='fixed inset-0 z-0 bg-gray-700 bg-opacity-50' onClick={() => setMenuOpen(!menuOpen)}></div>
+                menuOpen && <div tabindex="-1" aria-hidden="true" className='fixed inset-0 z-0 bg-gray-700 bg-opacity-50' onClick={() => isMobile && setMenuOpen(!menuOpen)}></div>
             }
         </>
         

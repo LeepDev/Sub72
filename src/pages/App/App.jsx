@@ -8,10 +8,13 @@ import TournamentEdit from '../Tournament/TournamentEdit/TournamentEdit';
 import CourseIndex from '../Course/CourseIndex/CourseIndex';
 import CourseDetails from '../Course/CourseDetails/CourseDetails';
 import Dashboard from '../Dashboard/Dashboard';
+import NewTournament from '../Tournament/NewTournament/NewTournament';
+import { useMediaQuery } from 'react-responsive';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
   const [error, setError] = useState(null)
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   async function handleSetRole(evt) {
     try{
@@ -29,11 +32,12 @@ export default function App() {
         user ? 
           user.role ?
             <main className='grid grid-flow-row-dense grid-row-auto grid-col-auto'>
-              <NavBar user={user} setUser={setUser} />
+              <NavBar user={user} setUser={setUser} isMobile={isMobile} />
               <Routes>
                 <Route path="/" element={ <Dashboard user={user} /> } />
-                <Route path="/tournaments" element={<TournamentIndex user={user} />} />
+                <Route path="/tournaments" element={<TournamentIndex isMobile={isMobile} user={user} />} />
                 <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
+                <Route path="/tournaments/new" element={<NewTournament isMobile={isMobile} />} />
                 <Route path="/courses" element={<CourseIndex user={user} />} />
                 <Route path="/courses/:id" element={<CourseDetails />} />
                 <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
@@ -41,7 +45,7 @@ export default function App() {
             </main>
           :
             <main className="antialiased flex flex-col justify-center items-center h-full">
-              <div className='max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-center items-center'>
+              <div className='p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-center items-center'>
                 <h1 className='block mb-10 text-6xl font-medium text-gray-900 dark:text-white'>Welcome to Sub 72</h1>
                 <h2 className='block mb-5 text-sm font-medium text-gray-900 dark:text-white'>Choose a Role:</h2>
                 <div className='flex flex-row'>

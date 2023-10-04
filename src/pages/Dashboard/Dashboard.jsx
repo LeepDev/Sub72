@@ -16,11 +16,9 @@ export default function Dashboard({user}) {
     }, [])
 
     return (
-        <div className="flex-ctr-ctr flex-col">
-            <h1>Current Live Tournaments</h1>
-            <div className="flex-ctr-ctr">
-                <TournamentCardIndex fetchTournaments={fetchTournaments} tournaments={liveT} user={user} />
-            </div>
+        <div className="flex items-center flex-col">
+            <h1 className='text-3xl m-4 font-bold tracking-tight text-gray-900 dark:text-white'>Current Live Tournaments</h1>
+            <TournamentCardIndex fetchTournaments={fetchTournaments} tournaments={liveT} user={user} />
         </div>
     );
 }
