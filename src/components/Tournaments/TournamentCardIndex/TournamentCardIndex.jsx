@@ -4,7 +4,7 @@ export default function TournamentCardIndex({tournaments, user, handleDelete, fe
 
 
     return (
-        <div className={ isMobile ? "flex flex-col items-center justify-center" : "flex flex-row items-center justify-center" }>
+        <div className={ isMobile ? "flex flex-col" : "flex flex-row" }>
             { 
                 tournaments.length > 0 && 
                 tournaments.map((t,idx) => 

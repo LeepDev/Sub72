@@ -48,7 +48,7 @@ export default function TournamentCard({ tournament, user, handleDelete, fetchTo
 
     return (
         <div className={isMobile ? cardSize : cardSize}>
-           <h5 className='mb-10 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>{tournament.name}{ tournament.live && <span className='text-yellow-200'> (LIVE)</span> }</h5>
+           <h5 className='mb-10 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>{tournament.name}{ tournament.live && <span className='dark:text-yellow-200 text-blue-500'> (LIVE)</span> }</h5>
             { 
                 user.role && user.role === "O" &&
                 <div>
