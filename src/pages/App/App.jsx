@@ -41,15 +41,14 @@ export default function App() {
             </main>
           :
             <main className="antialiased flex flex-col justify-center items-center h-full">
-              <div className='bg-white flex flex-col justify-center items-center drop-shadow-lg rounded-lg'>
-                <h1 className='text-2xl font-bold'>Welcome to Sub 72</h1>
-                <br></br>
-                <h2 className='font-bold'>Roles:</h2>
-                <div className='flex flex-row my-5'>
-                  <button className='mx-5 rounded-full bg-orange-300 py-1 px-4 outline-double outline-red-200' onClick={handleSetRole} value="O" >Organizer</button>
-                  <button className='mx-5 rounded-full bg-green-300 py-1 px-4 outline-double outline-red-200' onClick={handleSetRole} value="P" >Player</button>
+              <div className='max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-center items-center'>
+                <h1 className='block mb-10 text-6xl font-medium text-gray-900 dark:text-white'>Welcome to Sub 72</h1>
+                <h2 className='block mb-5 text-sm font-medium text-gray-900 dark:text-white'>Choose a Role:</h2>
+                <div className='flex flex-row'>
+                  <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' onClick={handleSetRole} value="O" >Organizer</button>
+                  <button className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800' onClick={handleSetRole} value="P" >Player</button>
                 </div>
-                <p className='text-center py-5 px-5' style={{ fontWeight: "bold" }}>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
+                <p className='block mb-10 text-sm font-medium text-gray-900 dark:text-white py-5'>Please note, if you want to become an organizer, you will have to go through an approval process (0-3 days)</p>
                 {
                   error ? 
                   <p>{error}</p>
