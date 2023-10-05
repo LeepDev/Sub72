@@ -41,7 +41,7 @@ export default function NavBar ({user, setUser, appClose, isMobile}) {
     return (
         <>
             <nav className="bg-white border-gray-200 dark:bg-gray-900 z-10">
-                <div tabIndex="1" className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/" className="flex items-center">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sub 72</span>
                     </Link>
@@ -86,7 +86,7 @@ export default function NavBar ({user, setUser, appClose, isMobile}) {
                 </div>
             </nav>
             {
-                menuOpen && <div tabindex="-1" aria-hidden="true" className='fixed inset-0 z-0 bg-gray-700 bg-opacity-50' onClick={() => isMobile && setMenuOpen(!menuOpen)}></div>
+                menuOpen && <div aria-hidden="true" className='fixed inset-0 z-0 bg-gray-700 bg-opacity-50' onClick={() => isMobile && setMenuOpen(!menuOpen)}></div>
             }
         </>
         

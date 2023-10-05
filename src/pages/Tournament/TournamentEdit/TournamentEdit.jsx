@@ -94,7 +94,7 @@ export default function TournamentEdit() {
     }
             
     return (
-        <div className="flex items-center justify-center flex-col py-12 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="flex items-center justify-center flex-col py-12">
             <h1 className='text-3xl m-4 font-bold tracking-tight text-gray-900 dark:text-white'>Edit Tournament</h1>
             { 
                 tournament ? 

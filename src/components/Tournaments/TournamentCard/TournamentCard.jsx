@@ -6,7 +6,8 @@ export default function TournamentCard({ tournament, user, handleDelete, fetchTo
     const navigate = useNavigate()
     const [joined, setJoined] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false);
-    const cardSize = "flex flex-col w-80 items-center justify-center p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    const cardSizeMobile = "flex flex-col w-80 items-center p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    const cardSize = "flex flex-col w-96 items-center p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
 
     async function checkJoined() {
         const players = tournament.users
@@ -47,7 +48,7 @@ export default function TournamentCard({ tournament, user, handleDelete, fetchTo
     },[])
 
     return (
-        <div className={isMobile ? cardSize : cardSize}>
+        <div className={isMobile ? cardSizeMobile : cardSize}>
            <h5 className='mb-10 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>{tournament.name}{ tournament.live && <span className='dark:text-yellow-200 text-blue-500'> (LIVE)</span> }</h5>
             { 
                 user.role && user.role === "O" &&

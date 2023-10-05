@@ -10,6 +10,7 @@ import CourseDetails from '../Course/CourseDetails/CourseDetails';
 import Dashboard from '../Dashboard/Dashboard';
 import NewTournament from '../Tournament/NewTournament/NewTournament';
 import { useMediaQuery } from 'react-responsive';
+import NewCourse from '../Course/NewCourse/NewCourse';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -34,13 +35,14 @@ export default function App() {
             <main className='grid grid-flow-row-dense grid-row-auto grid-col-auto'>
               <NavBar user={user} setUser={setUser} isMobile={isMobile} />
               <Routes>
-                <Route path="/" element={ <Dashboard user={user} /> } />
+                <Route path="/" element={ <Dashboard user={user} isMobile={isMobile} /> } />
                 <Route path="/tournaments" element={<TournamentIndex isMobile={isMobile} user={user} />} />
                 <Route path="/tournaments/:id/edit" element={<TournamentEdit />} />
                 <Route path="/tournaments/new" element={<NewTournament isMobile={isMobile} />} />
-                <Route path="/courses" element={<CourseIndex user={user} />} />
-                <Route path="/courses/:id" element={<CourseDetails />} />
-                <Route path="*" element={ <div className="flex-ctr-ctr flex-col" ><h1>404 Not Found</h1></div> }/>
+                <Route path="/courses" element={<CourseIndex user={user} isMobile={isMobile} />} />
+                <Route path="/courses/new" element={<NewCourse isMobile={isMobile} />} />
+                <Route path="/courses/:id" element={<CourseDetails isMobile={isMobile} />} />
+                <Route path="*" element={ <div className="flex items-center flex-col" ><h1 className='flex h-screen items-center justify-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>404 Not Found</h1></div> }/>
               </Routes>
             </main>
           :
