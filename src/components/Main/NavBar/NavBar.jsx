@@ -40,8 +40,8 @@ export default function NavBar ({user, setUser, appClose, isMobile}) {
     
     return (
         <>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900 z-10">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <nav className="bg-white border-gray-200 dark:bg-gray-800 z-10 h-fit">
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
                     <Link to="/" className="flex items-center">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sub 72</span>
                     </Link>
@@ -52,20 +52,20 @@ export default function NavBar ({user, setUser, appClose, isMobile}) {
                         </svg>
                     </button>
                     <div className={isMobile ? (menuOpen ? menuOpenClass : "hidden") : menuOpenClass} id="navbar-default">
-                        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                            <li>
+                        <ul className="font-medium flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700">
+                            <li className='flex flex-col justify-center'>
                                 <Link to="/" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/" ? activeClass : nonActiveClass)} aria-current="page">{user.name} Dashboard</Link>
                             </li>
-                            <li>
+                            <li className='flex flex-col justify-center'>
                                 <Link to="/tournaments" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/tournaments" ? activeClass : nonActiveClass)}>Tournaments</Link>
                             </li>
-                            <li>
+                            <li className='flex flex-col justify-center'>
                                 <Link to="/courses" onClick={() => isMobile && setMenuOpen(!menuOpen)} className={(location.pathname == "/courses" ? activeClass : nonActiveClass)}>Courses</Link>
                             </li>
-                            <li>
+                            <li className='flex flex-col justify-center'>
                                 <Link to="" className={nonActiveClass} onClick={handleLogOut}>Log Out</Link>
                             </li>
-                            <li>
+                            <li className='flex flex-col justify-center'>
                                 <div className='flex items-center justify-center gap-4'>
                                     <button onClick={toggleDarkMode} id="theme-toggle" type="button" className="flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                         {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import { getUser, setRole } from '../../utilities/users-service';
 import NavBar from '../../components/Main/NavBar/NavBar';
-import AuthPage from '../AuthPage/AuthPage';
+import Landing from '../Landing/Landing';
 import TournamentIndex from '../Tournament/TournamentIndex/TournamentIndex';
 import TournamentEdit from '../Tournament/TournamentEdit/TournamentEdit';
 import CourseIndex from '../Course/CourseIndex/CourseIndex';
@@ -32,7 +32,7 @@ export default function App() {
       { 
         user ? 
           user.role ?
-            <main className='grid grid-flow-row-dense grid-row-auto grid-col-auto'>
+            <main className='grid grid-flow-row-dense grid-row-auto grid-col-auto min-h-screen bg-gray-300 dark:bg-gray-900'>
               <NavBar user={user} setUser={setUser} isMobile={isMobile} />
               <Routes>
                 <Route path="/" element={ <Dashboard user={user} isMobile={isMobile} /> } />
@@ -64,10 +64,7 @@ export default function App() {
               </div>
             </main>
         :
-        <main className="antialiased flex flex-col justify-center items-center h-full">
-          <h1 className='block mb-10 text-6xl font-medium text-gray-900 dark:text-white'>Welcome to Sub 72</h1>
-          <AuthPage setUser={setUser} />
-        </main>
+        <Landing setUser={setUser}></Landing>
       }
     </>
   );

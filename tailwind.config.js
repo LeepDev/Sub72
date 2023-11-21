@@ -10,7 +10,11 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Ruda', 'san-serif'],
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
